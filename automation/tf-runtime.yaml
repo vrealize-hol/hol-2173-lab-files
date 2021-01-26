@@ -1,0 +1,27 @@
+apiVersion: run.tanzu.vmware.com/v1alpha1     #TKG API endpoint
+kind: TanzuKubernetesCluster                  #required parameter
+metadata:
+  name: tf-runtime                            #cluster name, user defined
+  namespace: hol-tf-service                   #supervisor namespace
+spec:
+  distribution:
+    version: v1.18                            #resolved kubernetes version
+  topology:
+    controlPlane:
+      count: 1                                #number of control plane nodes
+      class: best-effort-xsmall               #vmclass for control plane nodes
+      storageClass: lab-shared-storage        #storageclass for control plane
+    workers:
+      count: 2                                #number of worker nodes
+      class: best-effort-xsmall               #vmclass for worker nodes
+      storageClass: lab-shared-storage        #storageclass for worker nodes
+  settings:
+    storage:
+      defaultClass: lab-shared-storage        #default sc for cluster
+    network:
+      cni:
+        name: antrea                          #But could be left blank if using the default
+      services:
+        cidrBlocks: ["198.51.100.0/12"]
+      pods:
+        cidrBlocks: ["192.0.2.0/16"]
