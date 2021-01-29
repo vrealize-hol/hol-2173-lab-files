@@ -12,7 +12,7 @@ spec:
       class: best-effort-xsmall               #vmclass for control plane nodes
       storageClass: lab-shared-storage        #storageclass for control plane
     workers:
-      count: 2                                #number of worker nodes
+      count: 1                                #number of worker nodes
       class: best-effort-xsmall               #vmclass for worker nodes
       storageClass: lab-shared-storage        #storageclass for worker nodes
   settings:
