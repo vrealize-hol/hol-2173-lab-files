@@ -16,4 +16,4 @@ Do {
     $workernodes = $tkc.status.nodeStatus | Get-Member | ForEach-Object { If ($_.Name -like "*workers*") { @{$_.Name = $tkc.status.nodeStatus.($_.Name) } } }
     $workernodes | Format-Table -HideTableHeaders -AutoSize | Out-String
 } 
-While (-Not $workernodes.Values.Contains("ready"))
+While (-Not $workernodes.Values.Contains("ready") -or $workernodes.Values.Contains("notready"))
